@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 1 0 0 4.71238898038469
-  position 0.0053133426600010265 0.5262217161013922 4.9623676780614754e-05
+  orientation -1 0 0 1.5707963267948966
+  position -0.0013166447293074975 1.5135489085823721 -0.0252217014826007
 }
 TexturedBackground {
 }
@@ -14,17 +14,12 @@ RectangleArena {
   wallHeight 0.3
 }
 Robot {
+  translation -1.5950121695974623e-10 -6.183604518549685e-05 -0.25
+  rotation -1.2639994872355436e-13 -5.56550785348964e-18 1 1.1278243496775041e-05
   children [
-    Lidar {
-      horizontalResolution 360
-      numberOfLayers 1
-      minRange 0.1
-      maxRange 16
-      type "rotating"
-      noise 0.05
-    }
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 6.962672420033085e-26
         axis -1 0 0
         anchor 0 0.02 0
       }
@@ -176,6 +171,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 5.995612066323765e-26
         axis -1 0 0
         anchor 0 0.02 0
       }
@@ -1218,7 +1214,7 @@ Robot {
       ]
     }
     DEF EPUCK_CAMERA Camera {
-      translation 0 0.028 -0.03
+      translation 0 0.115 -0.03
       rotation 1 0 0 0
       children [
         Transform {
@@ -1251,9 +1247,10 @@ Robot {
         }
       ]
       fieldOfView 0.84
-      width 52
-      height 39
+      width 1000
+      height 1050
       near 0.0055
+      noise 0.2
       zoom Zoom {
       }
     }
@@ -1553,6 +1550,17 @@ Robot {
     DEF TURRET_SLOT Transform {
       translation 0 0.0486 0.0095
       rotation 0 0 1 0
+      children [
+        Lidar {
+          translation 0 0.084 0
+          horizontalResolution 360
+          numberOfLayers 1
+          minRange 0.1
+          maxRange 16
+          type "rotating"
+          noise 0.05
+        }
+      ]
     }
     DEF GROUND_SENSOR_SLOT Transform {
       translation 0 0.0003 -0.03
@@ -1595,7 +1603,7 @@ Robot {
       0 0 0
     ]
   }
-  controller "my_controller1"
+  controller "my_controller"
   cpuConsumption 1.11
   window "e-puck"
   remoteControl "e-puck_bluetooth"
